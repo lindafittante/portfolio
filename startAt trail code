@@ -1,0 +1,172 @@
+jQuery('.recent-projects').flexslider({
+    animation: "slide",
+    animationLoop: true,
+    slideshow: false,
+    controlNav: false,
+    directionNav: true,
+    itemWidth: 244,
+    itemMargin: -77,
+    minItems: 1,
+    move: 1,
+    startAt: 2,
+    touch: true
+  });
+  
+  <--- same person below --->
+  
+  <ul class="slides">
+  							<?php
+  							
+  				                $temp = $wp_query; 
+  				                $wp_query = null; 
+  				                $wp_query = new WP_Query(); 
+  				                $wp_query->query($project_options);
+  				                     
+  				                while ($wp_query->have_posts()) : $wp_query->the_post();
+  				            ?>
+  				                <li>
+  				                    <?php if ( get_field('mini_slider_thumbnail') ) { ?>
+  				                        <a class="project-image" href="<?php the_permalink(); ?>" title="<?php echo get_the_title(); ?>">
+  				                        	<img src="<?php the_field('mini_slider_thumbnail'); ?>" alt="" class="pull-left" />
+  				                        	<i class="overlay">
+  				                        		<!-- <span class="project-title"><?php the_title(); ?></span> -->
+  				                        	</i>
+  				                        </a>
+  				                    <?php } ?>
+  				                </li>
+  				                <?php endwhile; ?>
+  				             
+  				            <?php wp_reset_postdata(); wp_reset_query(); ?>
+  				            
+  						</ul>
+  
+  View <a href="http://jerrardwayne.jw-server.com">the problem here</a>
+  
+  
+<--- same person below --->
+ 
+ .recent-projects {
+ 	position: relative;
+ 	width: 100%;
+ 	background-color: rgba(0,0,0,0.05);
+ }
+ .recent-projects ul.slides {
+ 	margin-left: 150px;
+ }
+ .recent-projects ul.slides li {
+ 	height: 195px;
+ 	width: 214px !important;
+ 	margin-right: -77px;
+ 	overflow:hidden;
+ 	position: relative;
+ }
+ .recent-projects ul.slides li a {
+ 	display: block;
+ 	width: 100%;
+ 	height: 195px;
+ }
+ .recent-projects ul.slides li a img {
+ }
+ .recent-projects .flex-direction-nav a.flex-prev {
+ 	display: block;
+ 	background: url('../images/bx-next.png') left top;
+ 	width: 223px;
+ 	height: 196px;
+ 	text-indent: -9999999px;
+ 	position: absolute;
+ 	top: 0;
+ 	right: 0;
+ 	-webkit-transition: all 0.3s ease-in-out; -moz-transition: all 0.3s ease-in-out; -o-transition: all 0.3s ease-in-out; -ms-transition: all 0.3s ease-in-out; transition: all 0.3s ease-in-out;
+ }
+ .recent-projects .flex-direction-nav a.flex-prev:hover {
+ 	background: url('../images/bx-next-hover.png') left top;
+ }
+ .recent-projects .flex-direction-nav a.flex-next {
+ 	display: block;
+ 	background: url('../images/bx-prev.png') right top;
+ 	width: 223px;
+ 	height: 196px;
+ 	text-indent: -9999999px;
+ 	position: absolute;
+ 	top: 0;
+ 	left: 0;
+ 	-webkit-transition: all 0.3s ease-in-out; -moz-transition: all 0.3s ease-in-out; -o-transition: all 0.3s ease-in-out; -ms-transition: all 0.3s ease-in-out; transition: all 0.3s ease-in-out;
+ }
+ .recent-projects .flex-direction-nav a.flex-next:hover {
+ 	background: url('../images/bx-prev-hover.png') right top;
+ }
+ .recent-projects ul.slides li .overlay {
+ 	/*
+ position: absolute;
+ 	opacity: 0;
+ 	top: 0;
+ 	width: 100%;
+ 	height: 100%;
+ 	background: rgba(190,212,66,0.7);
+ 	z-index: 999;
+ 	transition: all .3s ease-in-out;
+ 	-webkit-transition: all .3s ease-in-out;
+ 	-moz-transition: all .3s ease-in-out;
+ 	-o-transition: all .3s ease-in-out;
+ 	-ms-transition: all .3s ease-in-out;
+ */
+ 	position: absolute;
+ 	opacity: 0;
+ 	top: 0;
+ 	width: 211px;
+ 	height: 100%;
+ 	cursor: pointer;
+ 	background-image: url("../images/slider-roll.png");
+ 	z-index: 2;
+ 	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+ 	filter: alpha(opacity=0);
+ 	-moz-opacity: 0;
+ 	-khtml-opacity: 0;
+ 	opacity: 0;
+ 	transition: 0.2s opacity linear;
+ 	-webkit-transition: 0.2s opacity linear;
+ 	-moz-transition: 0.2s opacity linear;
+ 	-o-transition: 0.2s opacity linear;
+ 	-ms-transition: 0.2s opacity linear;
+ 	left: -1px;
+ }
+ .recent-projects ul.slides li .overlay span {
+ 	position: absolute;
+ 	top: 42%;
+ 	width: 80%;
+ 	margin: 0 13px;
+ 	
+ }
+ .recent-projects ul.slides li:hover .overlay {
+ 	opacity: 1;
+ }
+    
+<--- new person below --->
+
+
+$('#carousel').flexslider({
+    animation: "slide",
+            controlNav: false,
+            animationLoop: true,
+            slideshow: false,
+            itemWidth: 210,
+            itemMargin: 4,
+            move: 1,
+            startAt: 1,
+            asNavFor: '#slider',
+            minItems: 2,
+            maxItems: 2
+  });
+
+  $('#slider').flexslider({
+    animation: "slide",
+            controlNav: false,
+            animationLoop: false,
+            slideshow: false,
+            startAt: 0,
+            start: function(slider){
+                $('body').removeClass('loading');
+            }
+  });
+
+
